@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_map/api/location_api_client.dart';
 
-void main() {
+void main() async {
+  final locationApiClient = LocationApiClient();
+  final locations = await locationApiClient.getLocations(location: 'Dhaka');
+  final labels = <String>[];
+  for(final location in locations) {
+    labels.add(location.label);
+  }
+  print("Labels $labels");
   runApp(const MyApp());
 }
 
@@ -15,8 +23,22 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }
+
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Google Map'),
+      ),
+    );
+  }
+}
+
 
