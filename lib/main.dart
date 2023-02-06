@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_map/api/location_api_client.dart';
-
+/// 56:27
 void main() async {
   final locationApiClient = LocationApiClient();
   final locations = await locationApiClient.getLocations(location: 'Dhaka');
